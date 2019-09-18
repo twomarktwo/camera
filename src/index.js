@@ -8,7 +8,8 @@ require(["quagga"], async quagga => {
       const video = createVideo();
       let stream = await navigator.mediaDevices.getUserMedia({
         // video: { facingMode: "environment", width: 1024 * 3 }
-        video: { deviceId: videoDevice.deviceId }
+        video: { facingMode: "user", width: 1024 * 3 }
+        //video: { deviceId: videoDevice.deviceId }
       });
       // log(stream.getVideoTracks().map(a => JSON.stringify(a.label)));
       video.srcObject = stream;
@@ -29,6 +30,7 @@ function createVideo() {
   let video = document.createElement("video");
   video.autoplay = true;
   video.width = 500;
+  video.classList.add("mirror");
   videoContainer.appendChild(video);
   return video;
 }
